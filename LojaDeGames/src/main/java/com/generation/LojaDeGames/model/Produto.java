@@ -16,97 +16,101 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+@Entity
+@Table(name = "tb_produtos")
+public class Produto {
 
-	@Entity
-	@Table(name = "tb_produto")
-	public class Produto {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private Long id;
+	@NotBlank(message = "O atributo Titulo Obrigatório!")
+	@Size(min = 1, max = 50, message = "O atributo Titulo deve conter no mínimo 05 e no máximo 50 caracteres")
+	private String titulo;
 
-		@NotBlank(message = "O atributo Titulo Obrigatório!")
-		@Size(min = 1, max = 50, message = "O atributo Titulo deve conter no mínimo 05 e no máximo 50 caracteres")
-		private String titulo;
+	@NotBlank(message = "O atributo Desenvolvedor é Obrigatório!")
+	@Size(min = 1, max = 500, message = "O atributo texto deve conter no mínimo 05 e no máximo 50 caracteres")
+	private String desenvolvedor;
 
-		@NotBlank(message = "O atributo Desenvolvedor é Obrigatório!")
-		@Size(min = 1, max = 500, message = "O atributo texto deve conter no mínimo 05 e no máximo 50 caracteres")
-		private String desenvolvedor; 
-		
-		@NotBlank(message = "O atributo Descriçao é Obrigatório!")
-		@Size(min = 1, max = 1000, message = "O atributo descrição deve conter no mínimo 10 e no máximo 1000 caracteres")
-		private String descricao;
-		
-		
-		private BigDecimal valor ;
-		
-		
-		
-		@UpdateTimestamp
-		private LocalDateTime data;
-		
-		@ManyToOne
-		@JsonIgnoreProperties("produto")
-		private Categoria categoria;
-		
+	@NotBlank(message = "O atributo Descriçao é Obrigatório!")
+	@Size(min = 1, max = 2000, message = "O atributo descrição deve conter no mínimo 10 e no máximo 1000 caracteres")
+	private String descricao;
 
-		public Long getId() {
-			return id;
-		}
+	private BigDecimal valor;
 
-		public void setId(Long id) {
-			this.id = id;
-		}
+	@UpdateTimestamp
+	private LocalDateTime data;
 
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
+	private Categoria categoria;
 
-		public String getTitulo() {
-			return titulo;
-		}
+	@ManyToOne
+	@JsonIgnoreProperties("produto")
+	private Usuario usuario;
 
-		public void setTitulo(String titulo) {
-			this.titulo = titulo;
-		}
+	public Long getId() {
+		return id;
+	}
 
-		public String getDesenvolvedor() {
-			return desenvolvedor;
-		}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-		public void setDesenvolvedor(String desenvolvedor) {
-			this.desenvolvedor = desenvolvedor;
-		}
+	public String getTitulo() {
+		return titulo;
+	}
 
-		public String getDescricao() {
-			return descricao;
-		}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
-		public void setDescricao(String descricao) {
-			this.descricao = descricao;
-		}
+	public String getDesenvolvedor() {
+		return desenvolvedor;
+	}
 
-		public BigDecimal getValor() {
-			return valor;
-		}
+	public void setDesenvolvedor(String desenvolvedor) {
+		this.desenvolvedor = desenvolvedor;
+	}
 
-		public void setValor(BigDecimal valor) {
-			this.valor = valor;
-		}
+	public String getDescricao() {
+		return descricao;
+	}
 
-		public LocalDateTime getData() {
-			return data;
-		}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
-		public void setData(LocalDateTime data) {
-			this.data = data;
-		}
+	public BigDecimal getValor() {
+		return valor;
+	}
 
-		public Categoria getCategoria() {
-			return categoria;
-		}
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
 
-		public void setCategoria(Categoria categoria) {
-			this.categoria = categoria;
-		}
+	public LocalDateTime getData() {
+		return data;
+	}
 
-		
+	public void setData(LocalDateTime data) {
+		this.data = data;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 }

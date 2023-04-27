@@ -24,7 +24,7 @@ import com.generation.LojaDeGames.model.Produto;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping("/produtoss")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ProdutoController {
 
